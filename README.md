@@ -1,2 +1,2 @@
 # autonomous_slam
-Detects and explores unexplored spaces in a costmap
+Autonomously detects and explores unexplored spaces in a costmap
