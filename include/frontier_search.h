@@ -45,7 +45,6 @@ private:
     rclcpp::Publisher<visualization_msgs::msg::MarkerArray>::SharedPtr markerPub;
     size_t prevMarkerCount;
 
-    bool nearestCell(unsigned int& result, unsigned int start, char val);
     bool isNewFrontier(unsigned int idx);
     Frontiers buildNewFrontiers(unsigned int startIdx, std::vector<bool>& visited,
                                                 const geometry_msgs::msg::Pose& robotPose);

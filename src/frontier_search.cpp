@@ -183,38 +183,6 @@ void FrontierSearch::updateMap(const nav2_msgs::msg::Costmap::SharedPtr& costmap
     mapOrigin = costmap->metadata.origin;
 }
 
-bool FrontierSearch::nearestCell(unsigned int& result, unsigned int start, char val)
-{
-    std::queue<unsigned int> bfs;
-    std::vector<bool> visited(sizeX * sizeY);
-
-    bfs.push(start);
-    visited[start] = true;
-
-    while (!bfs.empty())
-    {
-        unsigned int idx = bfs.front();
-        bfs.pop();
-
-        if (mapData[idx] == val)
-        {
-            result = idx;
-            return true;
-        }
-
-        // get the 8 neighboring cells
-        for (unsigned int& nbr : nhood8(idx))
-        {
-            if (!visited[nbr])
-            {
-                bfs.push(nbr);
-                visited[nbr] = true;
-            }
-        }
-    }
-    return false;
-}
-
 void FrontierSearch::addToBlacklist(const geometry_msgs::msg::Point& centroid)
 {
     frontiersBlacklist.push_back(centroid);
