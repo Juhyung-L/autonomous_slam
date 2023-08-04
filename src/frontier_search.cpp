@@ -9,7 +9,7 @@ static double distanceFormula(double x1, double y1, double x2, double y2)
 
 FrontierSearch::FrontierSearch(rclcpp::Node& node) : node(node)
 {
-    // publisher to publish nearest cell for debug
+    // publisher to publish frontiers (both points and centroids) for debug
     markerPub = node.create_publisher<visualization_msgs::msg::MarkerArray>("froniter_markers", 10);
     // importance of the distance to the closest frontier point when calculating the Frontiers' cost
     node.declare_parameter<double>("distance_weight", 1.0);
@@ -22,8 +22,6 @@ FrontierSearch::FrontierSearch(rclcpp::Node& node) : node(node)
 
 std::vector<Frontiers> FrontierSearch::searchFrontiers(const geometry_msgs::msg::Pose& startPose)
 {
-    // turn the pose into int
-    // input it into getIndex to get the index 
     std::vector<Frontiers> frontiersList;
 
     unsigned int mx, my;
