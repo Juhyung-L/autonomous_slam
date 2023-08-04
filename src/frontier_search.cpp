@@ -11,10 +11,13 @@ FrontierSearch::FrontierSearch(rclcpp::Node& node) : node(node)
 {
     // publisher to publish nearest cell for debug
     markerPub = node.create_publisher<visualization_msgs::msg::MarkerArray>("froniter_markers", 10);
-    node.declare_parameter<double>("distanceWeight", 1.0);
-    node.declare_parameter<double>("sizeWeight", 1.0);
-    node.get_parameter("distanceWeight", distanceWeight);
-    node.get_parameter("sizeWeight", sizeWeight);
+    // importance of the distance to the closest frontier point when calculating the Frontiers' cost
+    node.declare_parameter<double>("distance_weight", 1.0);
+    // importance of the number of frontier points when calculating the Frontiers' cost
+    node.declare_parameter<double>("size_weight", 1.0);
+
+    node.get_parameter("distance_weight", distanceWeight);
+    node.get_parameter("size_weight", sizeWeight);
 }
 
 std::vector<Frontiers> FrontierSearch::searchFrontiers(const geometry_msgs::msg::Pose& startPose)

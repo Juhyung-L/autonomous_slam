@@ -33,15 +33,12 @@ public:
     , tfListener(tfBuffer)
     , search(*this)
     { 
-        this->declare_parameter<int>("plannerFrequency", 100);
-        this->declare_parameter<std::string>("robotFrame", "base_footprint");
-        this->declare_parameter<int>("progressTimeout", 10);
+        this->declare_parameter<std::string>("robot_frame", "base_footprint");
+        this->declare_parameter<int>("progress_timeout", 10);
 
-        this->set_parameter(rclcpp::Parameter("use_sim_time", true)); // make the node use gazebo simulation time
-
-        this->get_parameter("plannerFrequency", plannerFrequency);
-        this->get_parameter("robotFrame", robotFrame);
-        this->get_parameter("progressTimeout", progressTimeout);
+        this->get_parameter("robot_frame", robotFrame);
+        this->get_parameter("progress_timeout", progressTimeout);
+        // time required for a goal to be considered unreachable and be put into the blacklist
 
         costmapSub = this->create_subscription<nav2_msgs::msg::Costmap>(
             "global_costmap/costmap_raw", 10, std::bind(&Explorer::costmapCallback, this, _1));
@@ -225,7 +222,6 @@ private:
         return transform;
     }
 
-    int plannerFrequency;
     bool costmapReceived = false;
     bool initComplete = false;
     std::string mapFrame;
