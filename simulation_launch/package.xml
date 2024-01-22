@@ -1,29 +1,19 @@
 <?xml version="1.0"?>
 <?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
 <package format="3">
-  <name>autonomous_slam</name>
+  <name>simulation_launch</name>
   <version>0.0.0</version>
-  <description>Node to detect and explore unexplored areas in a costmap</description>
+  <description>Launch all packages for simulation</description>
   <maintainer email="juhyunglee0313@gmail.com">juhyung</maintainer>
-  <license>Apache 2.0</license>
+  <license>Apache License 2.0</license>
 
   <buildtool_depend>ament_cmake</buildtool_depend>
 
   <exec_depend>robot_state_publisher</exec_depend>
   <exec_depend>robot_localization</exec_depend>
-  <exec_depend>rviz</exec_depend>
-
-  <depend>rclcpp</depend>
-  <depend>rclcpp_action</depend>
-  <depend>std_msgs</depend>
-  <depend>geometry_msgs</depend>
-  <depend>nav_msgs</depend>
-  <depend>nav2_msgs</depend>
-  <depend>map_msgs</depend>
-  <depend>visualization_msgs</depend>
-  <depend>tf2</depend>
-  <depend>tf_ros</depend>
-  <depend>SDL2</depend>
+  <exec_depend>navigation2</exec_depend>
+  <exec_depend>nav2_bringup</exec_depend>
+  <exec_depend>slam_toolbox</exec_depend>
 
   <test_depend>ament_lint_auto</test_depend>
   <test_depend>ament_lint_common</test_depend>
