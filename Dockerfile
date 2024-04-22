@@ -52,3 +52,5 @@ RUN apt-get update && apt-get install -q -y --no-install-recommends \
     ros-humble-nav2-bringup \
     ros-humble-slam-toolbox \
     ros-humble-robot-localization
+
+WORKDIR /home/dev_ws
