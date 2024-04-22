@@ -28,29 +28,23 @@ RUN . /etc/os-release \
 # install gazebo packages
 RUN curl -sSL http://get.gazebosim.org | sh
 
-WORKDIR /home/dev_ws
-
-# necessary ros packages
-RUN apt-get update && apt-get install -q -y --no-install-recommends \
-    ros-humble-xacro \
-    ros-humble-gazebo-ros-pkgs
-
-# setup bashrc settings
-RUN echo "source /opt/ros/humble/setup.bash" >> ~/.bashrc && \
-    echo "source /usr/share/gazebo/setup.bash" >> ~/.bashrc && \
-    echo "alias b='source /home/dev_ws/install/local_setup.bash'" >> ~/.bashrc
-
-# personal packages
-RUN apt-get update && apt-get install -q -y --no-install-recommends \
-    vim \
-    gdb \
-    gdbserver
-
 # package dependencies
 RUN apt-get update && apt-get install -q -y --no-install-recommends \
     ros-humble-navigation2 \
     ros-humble-nav2-bringup \
     ros-humble-slam-toolbox \
-    ros-humble-robot-localization
+    ros-humble-robot-localization \
+    ros-humble-xacro \
+    ros-humble-gazebo-ros-pkgs
+
+# personal packages
+RUN apt-get update && apt-get install -q -y --no-install-recommends \
+    vim \
+    gdb
+
+# setup bashrc settings
+RUN echo "source /opt/ros/humble/setup.bash" >> ~/.bashrc && \
+    echo "source /usr/share/gazebo/setup.bash" >> ~/.bashrc && \
+    echo "alias b='source /home/dev_ws/install/local_setup.bash'" >> ~/.bashrc
 
 WORKDIR /home/dev_ws
